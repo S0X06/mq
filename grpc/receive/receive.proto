@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package receve; //包名
+
+// 微服务
+service Recipient {
+	rpc Try (Receive) returns (Response) {}
+ 	rpc PublisherAck (Ack) returns (Response) {}
+ //	rpc Remove (Ack) returns (Response) {}
+}
+
+message Ack  {
+	string OrderSn   = 1;
+	int32 ack   = 2; //0:重新推送,1:成功  / 0:失败删除,1:成功可发送
+}
+
+message Receive  {
+	string  order_sn   = 1   ;
+	string  app_id = 2 ;
+	string  notify = 3;
+	string  data  = 4 ;
+	
+}
+
+
+message Response  {
+	int32 code    = 1;
+	string message =  2 ;
+	bytes  data    = 3;
+}
+
+
+
+

@@ -1,0 +1,30 @@
+app:
+  runmode: debug                 # 开发模式, debug, release, test
+  addr: :8080                  # HTTP绑定端口
+  name: mq              # API Server的名字
+  url: http://127.0.0.1:8080   # pingServer函数请求的API服务器的ip:port
+rabbitmq:
+  addr: 192.168.56.101
+  # addr: 192.168.11.92
+  port: 5672
+  username: guest
+  password: guest0725
+  conn_num: 1
+grpc:
+  port: :50051
+mongodb:
+  auth: 1    //是否使用授权 1是 0否
+  # addr: 192.168.11.92
+  addr: 192.168.56.101
+  port: 27017
+  username: admin
+  password: admin0725
+  database: news
+cron:
+  notifySpec: "*/1 * * * * ?"
+  sendSpec: "*/1 * * * * ?"
+  lockSpec: "*/2 * * * * ?"
+etcd:
+  open: 1  #是否注册
+  addr: 254.0.0.1:22379,254.0.0.1:22379  #多个地址用逗号隔开
+ 

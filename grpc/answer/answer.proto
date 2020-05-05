@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package answer; //包名
+
+
+service Answer {
+ 	rpc Prove (Ack) returns (Response) {}
+}
+
+message Ack  {
+	string OrderSn   = 1;
+	int32 ack   = 2; 
+}
+
+message Response  {
+	int32 code    = 1;
+	string message =  2 ;
+	bytes  data    = 3;
+}

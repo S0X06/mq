@@ -1,0 +1,32 @@
+version: '3'
+services:
+  # rabbitmq
+  rabbit:
+    image: rabbitmq:management # 选择带web界面的版本
+    container_name: rabbit
+    privileged: true  # 授权
+    restart: always
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - ./rabbitmq/rabbitmq.conf:/etc/rabbitmq/rabbitmq.conf # 把当前的rabbitmq.conf挂载到容器中
+    hostname: master #指定主机名称很重要后面集群使用 
+  # mongodb
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      # - ./mongodb/init-mongo.js:/docker-entrypoint-initdb.d/init-mongo-js:ro
+      - ./mongodb/data/:/data/usr/mongodb/data/  #数据
+      - ./mongodb/logs/:/data/usr/mongodb/logs/   #日记
+    # command: mongod --auth
+    restart: always
+    # environment:
+    #   MONGO_INITDB_DATABASE : news
+    #   MONGO_INITDB_ROOT_USERNAME: admin
+    #   MONGO_INITDB_ROOT_PASSWORD: admin0725
+  
+
